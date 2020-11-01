@@ -100,7 +100,7 @@
                           </div>
                         </div>
                     </router-link>
-                    <router-link to="#" class="iq-sub-card setting-dropdown">
+                    <router-link :to="{ name: 'auth1.sign-in1' }" class="iq-sub-card setting-dropdown">
                         <div class="media align-items-center">
                           <div class="right-icon">
                               <i class="ri-logout-circle-line text-primary"></i>

@@ -54,6 +54,10 @@ export default {
     })
   },
   methods: {
+    onSubmit: function () {
+      this.$emit('', this.email, this.password);
+      this.$router.push('/')
+    }
   }
 }
 </script>
