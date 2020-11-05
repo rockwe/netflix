@@ -21,7 +21,7 @@
                   <div class="col-lg-3 col-md-4">
                      <ul class="f-link list-unstyled mb-0">
                         <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Cotact Us</a></li>
+                       <li><router-link to="/contact">Contact Us</router-link></li> 
                         <li><a href="#">Legal Notice</a></li>
                      </ul>
                   </div>

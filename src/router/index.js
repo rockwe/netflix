@@ -8,6 +8,7 @@ const AuthLayout = () => import('../layouts/AuthLayout')
 
 
 const SignIn1 = () => import('../views/AuthPages/Default/SignIn1')
+const contact = () => import('../views/AuthPages/Default/contact')
 const LockScreen1 = () => import('../views/AuthPages/Default/LockScreen1')
 
 
@@ -101,6 +102,12 @@ const landingPageRoutes = (prop) => [
     name: prop + '.pricing-planning',
     meta: { auth: true, name: 'Price Planning', mainClass: '' },
     component: PricingPlanning
+  },
+    {
+    path: '/contact',
+    name: prop + '.contact',
+    meta: { auth: true, name: 'contact', mainClass: '' },
+    component: contact
   },
   {
     path: '/video-page',
