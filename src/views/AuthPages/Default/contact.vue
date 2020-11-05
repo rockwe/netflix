@@ -2,31 +2,33 @@
 	<div class='contact'>
 		<form>
             <div class=form>
-              <input type="radio" id="title_1" name="title" value="M." >Monsieur
-              <input type="radio" id="title_2" name="title" value="Mme.">Madame
+              <input type="radio" v-model="pick" v-bind:value="a">M.
+              <input type="radio" v-model="pick" v-bind:value="b">Mlle.
+              <input type="radio" v-model="pick" v-bind:value="c">Mme.
     			<div class="form-group">
     	            <label>Nom * </label>
-    	            <input v-model="nom" name="lastName"/>
+    	            <input v-model="nom" name="lastName"required placeholder="nom..." />
            		 </div>
                 <div class="form-group">
                     <label>Prénom * </label>
-                    <input v-model="prenom" name="firstName"/>
+                    <input v-model="prenom" name="firstName"required placeholder="prénom..." />
                 </div>
                 <div class="form-group">
                     <label>Email *</label>
-                    <input type="email" v-model="email" name="email" pattern=".+@netflix.com" size="30" required>
+                    <input type="email" v-model="email" name="email" pattern=".+@netflix.com" size="30" required placeholder="email@netflix.com...">
                 </div>
                 <div class="form-group">
                     <label>Message *</label>
-                    <input v-model="message" name="message" style="height:200px; width: 300px"/>
+                    <input v-model="message" id="message" style="height:200px; width: 300px "required />
                 </div>
             </div>
-         <Button
-        btnTitle="Envoyer"
-        :classList="btnClass"
-        :btnFunction="toggleModal"
-        /> 
+            <Button
+                btnTitle="Envoyer"
+                :classList="btnClass"
+                :btnFunction="Envoi"
+            /> 
 		</form>
+
 	</div>
 </template>
 
@@ -38,14 +40,40 @@
         },
         data:function(){
             return {
-                modalActive:false
+                pick:"",
+                nom:"",
+                prenom:"",
+                message:"",
+                email:"",
+                btnClass:"envoi",
+                modalActive:false,
+                a:"Monsieur",
+                b:"mademoiselle",
+                c:"Madame"
             }
         },
         methods:{
-            toggleModel:function(){
+             showModel:function(){
+                this.modalActive=true;
+            },
+            Envoi:function(){
+                if (this.pick && this.message && this.nom && this.prenom && this.email){
+                    const regex = RegExp('.+@netflix.com');
+                    if(regex.test(this.email)){
+                        alert(this.pick+" "+this.nom+", votre message a bien été envoyé!");
+                    }else{
+                       alert("Email doit etre sous format: '@netflix.com'")
+
+                    }
+
+                }
+                else{
+                    alert("Veuillez renseigner tous les champs")
+                }
                 this.modalActive =! this.modalActive
-            }
+            },
         }
+
     };
 </script>
 
