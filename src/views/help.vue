@@ -72,12 +72,12 @@
 	padding-top: 170px;
 }
 .div{
-	background-color: grey;
-	margin: 4px;
+	background-color: transparent;
+	margin: 6px;
 	display: inline-block;
 	height: 140px;
 	width: 390px;
-
+	text-align: center;
 }
 .section{
 	text-align: center; 
