@@ -7,7 +7,7 @@
                   <div class="sign-in-page-data">
                     <div class="sign-in-from w-100 m-auto">
                         <h3 class="mb-3 text-center">Sign in</h3>
-                        <sign-in1-form formType="jwt" email="admin@demo.com" password="admin123"></sign-in1-form>
+                        <sign-in1-form formType="jwt" v-on:login="login"/>
                     </div>
                   </div>
                   <div class="mt-3">
@@ -34,7 +34,16 @@ import SignIn1Form from './Forms/SignIn1Form'
 export default {
   name: 'SignIn1',
   components: { SignIn1Form },
-  data: () => ({}),
+  data: function () {
+    return {
+        user: {
+            email: '',
+            password: ''
+        },
+        authError: null
+    }
+
+  },
   mounted () {
     const loggedIn = localStorage.getItem('access_token')
     if (loggedIn !== undefined && loggedIn !== null) {
@@ -42,6 +51,29 @@ export default {
     }
   },
   methods: {
+      login: async function (email,password) {
+
+          this.email=email;
+          this.password=password;
+          console.log("-----------------",this.email, password)
+          try {
+              await this.$auth.loginWith('local', {
+                  data: {
+                      email: this.email,
+                      password: this.password
+                  }
+              });
+              this.$vueOnToast.pop({
+                  type: 'success',
+                  title: 'Connexion',
+                  body: 'Bienvenu ' + this.$store.state.auth.user.name,
+                  timeout: 3000
+              });
+              this.$router.push('/')
+          } catch (e) {
+              this.authError = e.response && e.response.data && e.response.data.error || 'Une erreur est survenue lors du traitement de votre requête.'
+          }
+      }
   }
 }
 </script>

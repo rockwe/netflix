@@ -14,6 +14,22 @@ module.exports = {
       }
     }
   },
+  auth: {
+    redirect: {
+      login: false,
+      logout: '/',
+      home: '/'
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: 'user/login', method: 'post', propertyName: 'token' },
+          user: { url: 'user/me', method: 'get', propertyName: 'user' },
+          logout: { url: 'user/logout', method: 'post' }
+        }
+      }
+    }
+  },
 
 
 }

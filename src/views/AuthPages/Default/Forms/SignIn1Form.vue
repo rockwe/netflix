@@ -55,9 +55,11 @@ export default {
   },
   methods: {
     onSubmit: function () {
-      this.$emit('', this.email, this.password);
-      this.$router.push('/')
-    }
+      this.$emit('login', this.user.email, this.user.password);
+      console.log(this.user.email, this.user.password)
+
+    },
+
   }
 }
 </script>
