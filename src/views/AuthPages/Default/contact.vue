@@ -31,7 +31,7 @@
 </template>
 
 <script>
-    import Button from "./FrontedPages/Components/Button";
+    import Button from "../../FrontendPages/Components/Button/Button";
     export default{
         components:{
             Button,

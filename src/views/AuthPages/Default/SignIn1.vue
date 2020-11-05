@@ -52,27 +52,28 @@ export default {
   },
   methods: {
       login: async function (email,password) {
+          this.$router.push('/')
 
-          this.email=email;
-          this.password=password;
-          console.log("-----------------",this.email, password)
-          try {
-              await this.$auth.loginWith('local', {
-                  data: {
-                      email: this.email,
-                      password: this.password
-                  }
-              });
-              this.$vueOnToast.pop({
-                  type: 'success',
-                  title: 'Connexion',
-                  body: 'Bienvenu ' + this.$store.state.auth.user.name,
-                  timeout: 3000
-              });
-              this.$router.push('/')
-          } catch (e) {
-              this.authError = e.response && e.response.data && e.response.data.error || 'Une erreur est survenue lors du traitement de votre requête.'
-          }
+          // this.email=email;
+          // this.password=password;
+          // console.log("-----------------",this.email, password)
+          // try {
+          //     await this.$auth.loginWith('local', {
+          //         data: {
+          //             email: this.email,
+          //             password: this.password
+          //         }
+          //     });
+          //     this.$vueOnToast.pop({
+          //         type: 'success',
+          //         title: 'Connexion',
+          //         body: 'Bienvenu ' + this.$store.state.auth.user.name,
+          //         timeout: 3000
+          //     });
+          //     this.$router.push('/')
+          // } catch (e) {
+          //     this.authError = e.response && e.response.data && e.response.data.error || 'Une erreur est survenue lors du traitement de votre requête.'
+          // }
       }
   }
 }
