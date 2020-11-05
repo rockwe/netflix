@@ -15,7 +15,7 @@
                      <ul class="f-link list-unstyled mb-0">
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">Help</a></li>
+                       <li><router-link to="/help">Help</router-link></li> 
                      </ul>
                   </div>
                   <div class="col-lg-3 col-md-4">

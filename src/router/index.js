@@ -9,6 +9,7 @@ const AuthLayout = () => import('../layouts/AuthLayout')
 
 const SignIn1 = () => import('../views/AuthPages/Default/SignIn1')
 const contact = () => import('../views/AuthPages/Default/contact')
+const help = () => import('../views/help')
 const LockScreen1 = () => import('../views/AuthPages/Default/LockScreen1')
 
 
@@ -108,6 +109,12 @@ const landingPageRoutes = (prop) => [
     name: prop + '.contact',
     meta: { auth: true, name: 'contact', mainClass: '' },
     component: contact
+  },
+    {
+    path: '/help',
+    name: prop + '.help',
+    meta: { auth: true, name: 'help', mainClass: '' },
+    component: help
   },
   {
     path: '/video-page',
