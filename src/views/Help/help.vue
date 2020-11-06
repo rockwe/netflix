@@ -2,38 +2,38 @@
 	<div class="global">
 		<section class="top-articles">
 			<div class="div">
-				<h2 class="category-title">Premiers pas</h2>
+				<h2 class="category-title">First steps</h2>
 				<ul class="list-articles">
 					<li class="article">
-						<li><router-link to="/premiersPas">Qu'est-ce que Netflix ?</router-link></li>
+						<li><router-link to="/premiersPas">What's Netflix ?</router-link></li>
 					</li>
 					<li class="article">
-						<a href="">Comment payer mon abonnement Netflix ?</a>
+						<a href="">How to pay for my Netflix subscription ?</a>
 					</li>
 				</ul>
 			</div>
 			<div class="div">
-				<h2 class="category-title">Lecture impossible</h2>
+				<h2 class="category-title">Cannot read</h2>
 				<ul class="list-articles">
 					<li class="article">
-						<a href="">J'ai oublié mon identifiant ou mon mot de passe Netflix</a>
+						<a href="/mdp">I forgot my Netflix username or password</a>
 					</li>
 
 				</ul>
 			</div>
 			<div class=" div">
-				<h2 class="category-title">Liens rapides</h2>
+				<h2 class="category-title">Quick links</h2>
 				<ul class="list-articles">
 					<li class="article">
-						<a href="#"> Réinitialiser le mot de passe </a>
+						<a href="#"> Reset password </a>
 					</li>
 				
 					<li class="article">
-						<a href="">Mettre à jour l'e-mail </a>
+						<a href="">Update Email </a>
 					</li>
 
 					<li class="article">
-						<a href="#">Demander des films ou des séries TV </a>
+						<a href="#">Request movies or TV shows </a>
 					</li>
 				</ul>
 			</div>

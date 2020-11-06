@@ -1,39 +1,52 @@
 <template> 
-    <div id="sousPage">
-
+    <div class="sousPage">
       <div class="left">
-			<h2 class="category-title">{{title}}</h2>
+			<h2 class="category-title">{{titleL}}</h2>
 			<div class="block">
-				<p>{{text}}</p>
-			</div>
-			<div class="block">
-				<p>{{text}}</p>
-			</div>
-			<div class="block">
-				<p>{{text}}</p>
+				  <slot name="lft"></slot>
 			</div>
       </div>
 
-      <div class="right"></div>
-		<h2 class="category-title"></h2>
-		<div class="block">
-			<p>{{text}}</p>
-		</div>
-
-    </div>
+      	<div class="right"></div>
+			<h5 class="category-title">{{titleR}}</h5>
+			<div class="block">
+				  <slot name="rght"></slot>
+			</div>
+    	</div>
 </template>
 
 <script>
 export default {
     name:"sousPage",
     props:{
-      title:String,
-      text:String,
+      titleR:String,
+      titleL:String,
     },
-    data:function(){
-            return {
-                title:"MON TITRE",
-                text: "mchin"
-            }
-        }
 };
+</script>
+
+<style>
+.left{
+	width:40%;
+	float:left;
+	margin:0px 20px;
+}
+
+.right{
+	float:right;
+	width:40%;
+	margin:0;
+}
+.sousPage{
+
+	padding-top: 120px;
+	padding-bottom: 700px;
+	text-align: center;
+
+}
+.block{
+	text-align: justify;
+	margin: 10px 0px;
+}
+
+</style>

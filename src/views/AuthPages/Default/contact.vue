@@ -24,7 +24,6 @@
             </div>
             <Button
                 btnTitle="Envoyer"
-                :classList="btnClass"
                 :btnFunction="Envoi"
             /> 
 		</form>
