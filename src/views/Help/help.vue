@@ -40,18 +40,18 @@
 
 
 			<div class=" div">
-				<h2 class="category-title">Liens rapides</h2>
+				<h2 class="category-title">Watch Netflix</h2>
 				<ul class="list-articles">
 					<li class="article">
-						<a href="#"> Réinitialiser le mot de passe </a>
+						<a href="#"> idée1 </a>
 					</li>
 				
 					<li class="article">
-						<a href="">Mettre à jour l'e-mail </a>
+						<a href="">idée2 </a>
 					</li>
 
 					<li class="article">
-						<a href="#">Demander des films ou des séries TV </a>
+						<a href="#">idée3 </a>
 					</li>
 				</ul>
 			</div>
