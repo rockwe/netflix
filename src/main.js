@@ -8,8 +8,10 @@ import store from './store'
 import './plugins'
 import './registerServiceWorker'
 import './directives'
+import Toasted from 'vue-toasted';
 
 Vue.config.productionTip = false
+Vue.use(Toasted)
 
 const vm = new Vue({
   router,

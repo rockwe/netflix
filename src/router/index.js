@@ -30,6 +30,24 @@ const PricingPlanning = () => import('../views/FrontendPages/UserProfile/Pricing
 
 
 Vue.use(VueRouter)
+let token  = JSON.parse(localStorage.getItem('user'))
+
+const ifNotAuthenticated = (to, from, next) => {
+
+  if (!token) {
+    next()
+    return
+  }
+  else next({ path: '/' })
+}
+
+const ifAuthenticated = (to, from, next) => {
+  if (token) {
+    next()
+    return
+  }
+   next('auth/sign-in1')
+}
 
 
 
@@ -56,7 +74,8 @@ const landingPageRoutes = (prop) => [
     path: '',
     name: prop + '.landing-page',
     meta: { auth: true, name: 'landing page 1', slider: 'true' },
-    component: LandingPage
+    component: LandingPage,
+
   },
   {
     path: '/show-category',
@@ -143,16 +162,16 @@ const routes = [
     path: '/',
     name: 'landing-page',
     component: FrontendLayout,
-    meta: { auth: true },
-    children: landingPageRoutes('landing-page')
+    children: landingPageRoutes('landing-page'),
+    beforeEach: ifAuthenticated,
   },
 
   {
     path: '/auth',
     name: 'auth1',
     component: AuthLayout,
-    meta: { auth: true },
-    children: authChildRoutes('auth1')
+    children: authChildRoutes('auth1'),
+   beforeEnter: ifNotAuthenticated,
   },
 ]
 

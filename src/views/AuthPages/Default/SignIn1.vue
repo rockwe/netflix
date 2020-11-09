@@ -30,6 +30,8 @@
 
 <script>
 import SignIn1Form from './Forms/SignIn1Form'
+import API from '../../../mixins/index'
+
 
 export default {
   name: 'SignIn1',
@@ -47,33 +49,30 @@ export default {
   mounted () {
     const loggedIn = localStorage.getItem('access_token')
     if (loggedIn !== undefined && loggedIn !== null) {
-      this.$router.push({ name: 'mini.dashboard.home-2' })
+    //  this.$router.push({ name: 'mini.dashboard.home-2' })
     }
   },
   methods: {
-      login: async function (email,password) {
-          this.$router.push('/')
 
-          // this.email=email;
-          // this.password=password;
-          // console.log("-----------------",this.email, password)
-          // try {
-          //     await this.$auth.loginWith('local', {
-          //         data: {
-          //             email: this.email,
-          //             password: this.password
-          //         }
-          //     });
-          //     this.$vueOnToast.pop({
-          //         type: 'success',
-          //         title: 'Connexion',
-          //         body: 'Bienvenu ' + this.$store.state.auth.user.name,
-          //         timeout: 3000
-          //     });
-          //     this.$router.push('/')
-          // } catch (e) {
-          //     this.authError = e.response && e.response.data && e.response.data.error || 'Une erreur est survenue lors du traitement de votre requête.'
-          // }
+
+
+      login: async function (email,password) {
+
+          console.log("-----------------",this.email, password)
+
+          API.login({email,password}).then((data) => {
+              console.log("user",data)
+
+              localStorage.setItem('user', JSON.stringify(data));
+              this.$router.push('/')
+               this.$toasted.show("Connexion success", {
+                  theme: "toasted-primary",
+                  position: "top-right",
+                  duration : 2000,
+                   type: "success"
+              });
+          })
+
       }
   }
 }

@@ -17,12 +17,12 @@
 
 <script>
 export default {
-    name:"sousPage",
-    props:{
-      titleR:String,
-      titleL:String,
-    },
-};
+	name: "sousPage",
+	props: {
+		titleR: String,
+		titleL: String,
+	}
+}
 </script>
 
 <style>
@@ -50,3 +50,5 @@ export default {
 }
 
 </style>
+
+

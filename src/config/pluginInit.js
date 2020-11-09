@@ -1,7 +1,7 @@
 import Scrollbar from 'smooth-scrollbar'
 import Snackbar from 'node-snackbar'
 import Store from '../store/index'
-import Route from '../router/index'
+import Route from '../router'
 import counterUp from 'counterup2'
 require('waypoints/lib/noframework.waypoints.min')
 const $ = require('jquery')
@@ -12,6 +12,10 @@ if (typeof window !== 'undefined') {
   window.jQuery = $
   require('owl.carousel/dist/owl.carousel')
 }
+export default {
+  apiUrl: process.env.VUE_APP_API_URL
+}
+
 export const APPNAME = 'Nextfix'
 export const APPLOGONAME = 'NEXTFIX'
 export const core = {

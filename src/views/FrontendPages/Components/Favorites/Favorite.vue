@@ -9,7 +9,7 @@
             </div>
             <div class="upcoming-contens">
                <Slick class="favorites-slider list-inline row p-0 mb-0" :option="favOption">
-                  <li class="slide-item" v-for="(item,index) in favoriteData" :key="index">
+                  <li class="slide-item" v-for="(item,index) in moviesList" :key="index">
                      <router-link :to="{ name: 'landing-page.movie-detail' }">
                         <div class="block-images position-relative">
                            <div class="img-box">
@@ -45,12 +45,13 @@
 </section>
 </template>
 <script>
-
+   import ApiMovies from "@/mixins/movies";
 export default {
   name: 'Upcomming',
   components: {
   },
   mounted () {
+
   },
   data () {
     return {
@@ -61,6 +62,7 @@ export default {
         { image: require('../../../../assets/images/frontend/favorite/04.jpg'), title: '1980', age: '25+', time: '2h 30m' },
         { image: require('../../../../assets/images/frontend/favorite/05.jpg'), title: '1980', age: '25+', time: '2h 30m' }
       ],
+       moviesList:[],
       favOption: {
         dots: false,
         arrows: false,
@@ -96,6 +98,21 @@ export default {
         ]
       }
     }
-  }
+  },
+   created() {
+     console.log(this.moviesList)
+      this.getMovies()
+              .then((data) => {
+
+                 this.moviesList =  JSON.stringify(data.data)
+                 console.log("movie",this.moviesList)
+              })
+              .catch(err => console.log(err));
+   },
+   methods: {
+
+   },
+   mixins:[ApiMovies]
+
 }
 </script>

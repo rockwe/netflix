@@ -100,13 +100,13 @@
                           </div>
                         </div>
                     </router-link>
-                    <router-link :to="{ name: 'auth1.sign-in1' }" class="iq-sub-card setting-dropdown">
+                    <router-link :to="{ name: 'auth1.sign-in1' }" class="iq-sub-card setting-dropdown" >
                         <div class="media align-items-center">
                           <div class="right-icon">
                               <i class="ri-logout-circle-line text-primary"></i>
                           </div>
                           <div class="media-body ml-3">
-                              <h6 class="mb-0 ">Logout</h6>
+                              <h6 v-on:click="logout" class="mb-0 ">Logout</h6>
                           </div>
                         </div>
                     </router-link>
@@ -182,7 +182,10 @@ export default {
     },
     routerAnimationChange (e) {
       this.animated = e
-    }
+    },
+      logout: function () {
+          localStorage.removeItem("user")
+      }
   }
 }
 </script>
