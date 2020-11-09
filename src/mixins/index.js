@@ -3,8 +3,7 @@ import axios from 'axios';
 const API_URL = 'https://api.themoviedb.org/3/'
 const API_KEY = '844dba0bfd8f3a4f3799f6130ef9e335';
 
-const API_BASE_URL = process.env.NODE_ENV === 'development' ?
-    "http://localhost:5000/api/v1" : 'https://storeclient-api.herokuapp.com/api/v1';
+const API_BASE_URL = 'https://storeclient-api.herokuapp.com/api/v1';
 
 axios.interceptors.request.use((config) => {
     if (process.browser) {
