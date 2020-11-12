@@ -1,7 +1,6 @@
 <template>
   <div>
     <Popular/>
-    <International/>
     <Recommend/>
   </div>
 </template>

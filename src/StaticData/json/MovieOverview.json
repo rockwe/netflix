@@ -1,5 +1,6 @@
 [
     {
+        "id": 1,
         "title": "the hero camp",
         "age": "18+",
         "session": "3 sesson",
@@ -89,6 +90,7 @@
         ]
     },
     {
+        "id": 2,
         "title": "the hero camp",
         "age": "18+",
         "session": "3 sesson",
@@ -178,6 +180,7 @@
         ]
     },
     {
+        "id": 3,
         "title": "the hero camp",
         "age": "18+",
         "session": "3 sesson",
@@ -267,6 +270,7 @@
         ]
     },
     {
+        "id": 4,
         "title": "the hero camp",
         "age": "18+",
         "session": "3 sesson",
@@ -356,6 +360,7 @@
         ]
     },
     {
+        "id": 5,
         "title": "the hero camp",
         "age": "18+",
         "session": "3 sesson",
@@ -445,6 +450,7 @@
         ]
     },
     {
+        "id" : 6,
         "title": "the hero camp",
         "age": "18+",
         "session": "3 sesson",

@@ -3,15 +3,13 @@
         <b-row>
             <b-col lg="12">
                 <div class="trending-info season-info g-border">
-                    <h4 class="trending-text big-title text-uppercase mt-0">The Hero Camp</h4>
+                    <img :src="getImageFromApi(movie.poster_path)" class="img-fluid" alt="">
+                    <h4 class="trending-text big-title text-uppercase mt-0">{{movie.title}}The Hero Camp</h4>
                     <div class="d-flex align-items-center text-white text-detail episode-name mb-0">
-                        <span>S1E01</span>
-                        <span class="trending-year">Lorem Ipsum is dummy text</span>
+                        <span>S{{movie.vote_average}}</span>
+                        <span class="trending-year">{{movie.release_date}}</span>
                     </div>
-                    <p class="trending-dec w-100 mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                        unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                        survived not only five centuries.</p>
+                    <p class="trending-dec w-100 mb-0">{{movie.overview}}</p>
                     <ul class="list-inline p-0 mt-4 share-icons music-play-lists">
                         <li><span><i class="ri-add-line"></i></span></li>
                         <li><span><i class="ri-heart-fill"></i></span></li>
@@ -32,15 +30,35 @@
     </section>
 </template>
 <script>
+    import ApiMovies from "@/mixins/movies";
 export default {
+
   name: 'Detail',
   components: {
   },
   mounted () {
+      console.log("para",this.$route.params.id)
   },
   data () {
     return {
+        movie:{}
     }
-  }
+  },
+    created() {
+        console.log(this.$route.params.id);
+        this.getMovie(this.$route.params.id)
+            .then(data=> {this.movie=data.data
+                console.log(this.movie);
+            })
+            .catch(err=> console.log(err))
+    },
+
+    methods: {
+        getImageFromApi (name) {
+            return 'https://image.tmdb.org/t/p/w300' + name
+        }
+    },
+
+    mixins:[ApiMovies]
 }
 </script>

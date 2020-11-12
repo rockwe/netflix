@@ -1,7 +1,7 @@
 <template>
 <section id="home" class="iq-main-slider p-0">
   <Slick id="home-slider" class="slider m-0 p-0" :option="homeSliderOption">
-    <div class="slide slick-bg s-bg-1" v-for="(data,index) in sliderData" :key="index">
+    <div class="slide slick-bg s-bg-1" v-for="data in sliderData" :key="data.id">
       <b-container fluid class="position-relative h-100">
         <div class="slider-inner h-100">
             <b-row class="align-items-center  h-100">
@@ -14,12 +14,12 @@
                   <h1 class="slider-text big-title title text-uppercase" data-animation-in="fadeInLeft"
                     data-delay-in="0.6">{{data.title}}</h1>
                   <div class="d-flex align-items-center" data-animation-in="fadeInUp" data-delay-in="1">
-                    <span class="badge badge-secondary p-2">{{data.age}}+</span>
-                    <span class="ml-3">{{data.sesson}}</span>
+                    <span class="badge badge-secondary p-2">{{data.vote_average}}+</span>
+                    <span class="ml-3">{{data.release_date}}</span>
                   </div>
-                  <p data-animation-in="fadeInUp" data-delay-in="1.2">{{data.text}}</p>
+                  <p data-animation-in="fadeInUp" data-delay-in="1.2">{{data.overview}}</p>
                   <div class="d-flex align-items-center r-mb-23" data-animation-in="fadeInUp" data-delay-in="1.2">
-                    <router-link :to="{ name: 'landing-page.category-detail' }" class="btn btn-hover"><i class="fa fa-play mr-2"
+                    <router-link :to="{ name: 'landing-page.category-detail', params:{id:data.id} }" class="btn btn-hover"><i class="fa fa-play mr-2"
                         aria-hidden="true"></i>Play Now</router-link>
                     <router-link :to="{ name: 'landing-page.category-detail' }" class="btn btn-link">More details</router-link>
                   </div>
@@ -52,8 +52,9 @@
 </section>
 </template>
 <script>
-
+    import ApiMovies from "@/mixins/movies";
 export default {
+
   name: 'Home',
   components: {
   },
@@ -61,14 +62,7 @@ export default {
   },
   data () {
     return {
-      sliderData: [
-        { title: 'bushland', age: '18', sesson: '2 Seasons', text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-        { title: 'bushland', age: '18', sesson: '2 Seasons', text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-        { title: 'bushland', age: '18', sesson: '2 Seasons', text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-        { title: 'bushland', age: '18', sesson: '2 Seasons', text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-        { title: 'bushland', age: '18', sesson: '2 Seasons', text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-        { title: 'bushland', age: '18', sesson: '2 Seasons', text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." }
-      ],
+      sliderData: [],
       homeSliderOption: {
         autoplay: false,
         speed: 800,
@@ -89,7 +83,24 @@ export default {
       }
     }
   },
-  methods: {
-  }
+    created: function () {
+        console.log(this.sliderData)
+
+        this.getMovies()
+            .then(  data => {
+
+                this.sliderData = data.data.results.slice(15, 17)
+                console.log("movie", this.sliderData)
+            })
+            .catch(err => console.log(err));
+    },
+    components: {
+    },
+    methods: {
+        getImageFromApi (name) {
+            return 'https://image.tmdb.org/t/p/w300' + name
+        }
+    },
+    mixins: [ApiMovies]
 }
 </script>

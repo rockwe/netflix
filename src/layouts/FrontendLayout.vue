@@ -171,8 +171,10 @@ export default {
       logo: loader,
       headerItem: [
         { title: 'Home', link: '/' },
-        { title: 'Tv Shows', link: '/show-category' },
-        { title: 'Movies', link: '/movie-category' }
+        { title: 'futureMovie', link: '/show-category' },
+        { title: 'NewMovies', link: '/movie-category' },
+        { title: 'Wishlists', link: '/wish-list-movie' },
+        { title: 'Search', link: '/search' },
       ]
     }
   },

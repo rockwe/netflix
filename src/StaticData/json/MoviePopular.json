@@ -1,0 +1,8 @@
+[
+  { "id": 1, "image": "../../../assets/images/frontend/tvthrillers/01.jpg", "title": "Day of Darkness", "age": "12+", "series": "1 Seasons", "description": "day of da","time": "1h 30m"},
+  { "id": 2, "image": "../../../assets/images/frontend/tvthrillers/02.jpg", "title": "My True Friend ", "age": "14+", "series": "7 Seasons", "description": "day of da","time": "2h 30m"},
+  { "id": 3, "image": "../../../assets/images/frontend/tvthrillers/03.jpg", "title": "Arrival 1999", "age": "11+", "series": "6 Seasons", "description": "day of da","time": "3h 30m"},
+  { "id": 4, "image": "../../../assets/images/frontend/tvthrillers/04.jpg", "title": "NIGHT MARE", "age": "19+", "series": "5 Seasons", "description": "day of da","time": "2h 30m"},
+  { "id": 5, "image": "../../../assets/images/frontend/tvthrillers/05.jpg", "title": "Last Race", "age": "10+", "series": "5 Seasons", "description": "day of da","time": "1h 00m"},
+  { "id": 6, "image": "../../../assets/images/frontend/tvthrillers/01.jpg", "title": "Dino Land", "age": "09+", "series": "3 Seasons", "description": "day of da", "time": "2h 50m"}
+]

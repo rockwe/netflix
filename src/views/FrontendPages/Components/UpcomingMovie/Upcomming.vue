@@ -9,11 +9,11 @@
             </div>
             <div class="upcoming-contens">
                <Slick class="favorites-slider list-inline row p-0 mb-0" :option="upCommingSliderOption">
-                  <li class="slide-item" v-for="(item,index) in upComming" :key="index">
-                     <router-link :to="{ name: 'landing-page.movie-detail' }">
+                  <li class="slide-item" v-for="item in upComming" :key="item.id">
+                     <router-link :to="{ name: 'landing-page.movie-detail',params:{id:item.id} }">
                         <div class="block-images position-relative">
                            <div class="img-box">
-                              <img :src="item.image" class="img-fluid" alt="">
+                              <img :src="getImageFromApi(item.poster_path)" class="img-fluid" alt="">
                            </div>
                            <div class="block-description">
                               <h6>{{item.title}}</h6>
@@ -45,7 +45,7 @@
 </section>
 </template>
 <script>
-
+   import ApiMovies from "@/mixins/movies";
 export default {
   name: 'Upcomming',
   components: {
@@ -54,13 +54,7 @@ export default {
   },
   data () {
     return {
-      upComming: [
-        { image: require('../../../../assets/images/frontend/upcoming/01.jpg'), title: 'The Last Breath', age: '5+', time: '2h 30m' },
-        { image: require('../../../../assets/images/frontend/upcoming/02.jpg'), title: 'Last Night', age: '22+', time: '2h 30m' },
-        { image: require('../../../../assets/images/frontend/upcoming/03.jpg'), title: '1980', age: '25+', time: '2h 30m' },
-        { image: require('../../../../assets/images/frontend/upcoming/03.jpg'), title: '1980', age: '25+', time: '2h 30m' },
-        { image: require('../../../../assets/images/frontend/upcoming/03.jpg'), title: '1980', age: '25+', time: '2h 30m' }
-      ],
+      upComming: [],
       upCommingSliderOption: {
         dots: false,
         arrows: false,
@@ -96,6 +90,23 @@ export default {
         ]
       }
     }
-  }
+  },
+   created: function () {
+      console.log(this.favoriteData)
+      this.getImageFromApi()
+      this.getMovies()
+              .then(  data => {
+
+                 this.upComming = data.data.results.slice(15, 19)
+                 console.log("movie", this.upComming)
+              })
+              .catch(err => console.log(err));
+   },
+   methods: {
+      getImageFromApi (name) {
+         return 'https://image.tmdb.org/t/p/w300' + name
+      }
+   },
+   mixins: [ApiMovies]
 }
 </script>

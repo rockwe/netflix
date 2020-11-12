@@ -2,8 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 
+
+
 const FrontendLayout = () => import('../layouts/FrontendLayout')
 const AuthLayout = () => import('../layouts/AuthLayout')
+const SearchMovie = () => import('../views/FrontendPages/SearchMovie')
+const WishlistMovies = () => import('../views/FrontendPages/Wishlists')
 
 
 
@@ -30,10 +34,10 @@ const PricingPlanning = () => import('../views/FrontendPages/UserProfile/Pricing
 
 
 Vue.use(VueRouter)
-let token  = JSON.parse(localStorage.getItem('user'))
+
 
 const ifNotAuthenticated = (to, from, next) => {
-
+  let token  = JSON.parse(localStorage.getItem('user'))
   if (!token) {
     next()
     return
@@ -42,6 +46,7 @@ const ifNotAuthenticated = (to, from, next) => {
 }
 
 const ifAuthenticated = (to, from, next) => {
+  let token  = JSON.parse(localStorage.getItem('user'))
   if (token) {
     next()
     return
@@ -76,6 +81,18 @@ const landingPageRoutes = (prop) => [
     meta: { auth: true, name: 'landing page 1', slider: 'true' },
     component: LandingPage,
 
+  },
+  {
+    path: '/search',
+    name: prop + '.search',
+    meta: { auth: true, name: 'Search', category: 'true' },
+    component: SearchMovie
+  },
+  {
+    path: '/wish-list-movie',
+    name: prop + '.wish-list-movie',
+    meta: { auth: true, name: 'Wishlists', category: 'true' },
+    component: WishlistMovies
   },
   {
     path: '/show-category',
@@ -163,7 +180,7 @@ const routes = [
     name: 'landing-page',
     component: FrontendLayout,
     children: landingPageRoutes('landing-page'),
-    beforeEach: ifAuthenticated,
+    beforeEnter: ifAuthenticated,
   },
 
   {

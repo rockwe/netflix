@@ -2,7 +2,6 @@
   <div>
     <Popular/>
     <International/>
-    <Recommend/>
   </div>
 </template>
 <script>
@@ -15,7 +14,6 @@ export default {
   components: {
     Popular,
     International,
-    Recommend
   },
   mounted () {
     core.index()

@@ -3,10 +3,8 @@
     <Favorites/>
     <UpComming/>
     <TopTen/>
-    <Suggested/>
     <Detail/>
-    <Trending/>
-    <Thrillers/>
+
   </div>
 </template>
 <script>

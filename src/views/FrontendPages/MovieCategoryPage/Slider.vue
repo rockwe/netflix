@@ -1,15 +1,15 @@
 <template>
       <section class="iq-main-slider p-0">
       <Slick id="tvshows-slider" :option="sliderOption">
-         <div v-for="(item,index) in sliderData" :key="index">
-            <router-link :to="{ name: 'landing-page.category-detail' }">
+         <div v-for="item in sliderData" :key="item.id">
+            <router-link :to="{ name: 'landing-page.category-detail',params:{id:item.id} }">
                <div class="shows-img">
-                  <img :src="item.image" class="w-100" alt="">
+                  <img :src="getImageFromApi(item.poster_path)" class="w-90" alt="">
                   <div class="shows-content">
                      <h4 class="text-white mb-1">{{item.title}}</h4>
                      <div class="movie-time d-flex align-items-center">
-                        <div class="badge badge-secondary p-1 mr-2">{{item.age}}</div>
-                        <span class="text-white">{{item.series}}</span>
+                        <div class="badge badge-secondary p-1 mr-2">{{item.vote_average}}</div>
+                        <span class="text-white">{{item.release_date}}</span>
                      </div>
                   </div>
                </div>
@@ -38,7 +38,7 @@
    </section>
 </template>
 <script>
-
+    import ApiMovies from "@/mixins/movies";
 export default {
   name: 'Slider',
   components: {
@@ -47,11 +47,7 @@ export default {
   },
   data () {
     return {
-      sliderData: [
-        { image: require('../../../assets/images/frontend/movie-banner/1.jpg'), title: 'Open Dead Shot', age: '18+', series: '3 Seasons' },
-        { image: require('../../../assets/images/frontend/movie-banner/2.jpg'), title: 'The Lost Journey', age: '18+', series: '3 Seasons' },
-        { image: require('../../../assets/images/frontend/movie-banner/3.jpg'), title: 'Boop Bitty', age: '18+', series: '3 Seasons' }
-      ],
+      sliderData: [],
       sliderOption: {
         centerMode: true,
         centerPadding: '200px',
@@ -83,6 +79,24 @@ export default {
       }
 
     }
-  }
+  },
+    created: function () {
+
+        this.getUpcoming()
+            .then(  data => {
+
+                this.sliderData = data.data.results.slice(0, 4)
+
+            })
+            .catch(err => console.log(err));
+    },
+    components: {
+    },
+    methods: {
+        getImageFromApi (name) {
+            return 'https://image.tmdb.org/t/p/w300' + name
+        }
+    },
+    mixins: [ApiMovies]
 }
 </script>

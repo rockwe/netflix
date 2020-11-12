@@ -3,31 +3,30 @@
          <b-row>
             <b-col lg="12">
                <div class="trending-info g-border">
-                  <h1 class="trending-text big-title text-uppercase mt-0">The Hero Camp</h1>
-                  <ul class="p-0 list-inline d-flex align-items-center movie-content">
-                     <li class="text-white">Action</li>
-                     <li class="text-white">Drama</li>
+                  <img :src="getImageFromApi(movie.poster_path)" class="img-fluid" alt="">
+                  <h1 class="trending-text big-title text-uppercase mt-0">{{movie.title}}</h1>
+                  <ul class="p-0 list-inline d-flex align-items-center movie-content" v-for="item in movie.genres">
+                     <li class="text-white">{{item.name}}</li>
+
                   </ul>
                   <div class="d-flex align-items-center text-white text-detail">
                      <span class="badge badge-secondary p-3">18+</span>
                      <span class="ml-3">3 Seasons</span>
-                     <span class="trending-year">2020</span>
+                     <span class="trending-year">{{movie.release_date}}</span>
                   </div>
                   <div class="d-flex align-items-center series mb-4">
                      <a href="javascript:void();"><img src="../../../assets/images/frontend/trending/trending-label.png" class="img-fluid"
                            alt=""></a>
-                     <span class="text-gold ml-3">#2 in Series Today</span>
+                     <span class="text-gold ml-3">{{movie.status}}</span>
                   </div>
-                  <p class="trending-dec w-100 mb-0">Lorem Ipsum is simply dummy text of the printing and typesetting
-                     industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-                     unknown printer took a galley of type and scrambled it to make a type specimen book. It has
-                     survived not only five centuries.</p>
+                  <p class="trending-dec w-100 mb-0">{{movie.overview}}</p>
                </div>
             </b-col>
          </b-row>
       </section>
 </template>
 <script>
+   import ApiMovies from "@/mixins/movies";
 export default {
   name: 'Detail',
   components: {
@@ -36,7 +35,24 @@ export default {
   },
   data () {
     return {
+       movie:{}
     }
-  }
+  },
+   created() {
+      console.log(this.$route.params.id);
+      this.getMovie(this.$route.params.id)
+              .then(data=> {this.movie=data.data
+                 console.log(this.movie);
+              })
+              .catch(err=> console.log(err))
+   },
+
+   methods: {
+      getImageFromApi (name) {
+         return 'https://image.tmdb.org/t/p/w300' + name
+      }
+   },
+
+   mixins:[ApiMovies]
 }
 </script>

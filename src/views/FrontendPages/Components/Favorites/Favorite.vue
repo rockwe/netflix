@@ -9,17 +9,18 @@
             </div>
             <div class="upcoming-contens">
                <Slick class="favorites-slider list-inline row p-0 mb-0" :option="favOption">
-                  <li class="slide-item" v-for="(item,index) in moviesList" :key="index">
-                     <router-link :to="{ name: 'landing-page.movie-detail' }">
-                        <div class="block-images position-relative">
+
+                  <li class="slide-item" v-for="item in favoriteData" :key="item.id">
+                     <router-link :to="{ name: 'landing-page.movie-detail',params:{id:item.id} }">
+
                            <div class="img-box">
-                              <img :src="item.image" class="img-fluid" alt="">
+                              <img :src="getImageFromApi(item.poster_path)" class="img-fluid" alt="">
                            </div>
                            <div class="block-description">
                               <h6>{{item.title}}</h6>
                               <div class="movie-time d-flex align-items-center my-2">
-                                 <div class="badge badge-secondary p-1 mr-2">{{item.age}}</div>
-                                 <span class="text-white">{{item.time}}</span>
+                                 <div class="badge badge-secondary p-1 mr-2">{{item.vote_average}}</div>
+                                 <span class="text-white">{{item.release_date}}</span>
                               </div>
                               <div class="hover-buttons">
                                  <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
@@ -34,9 +35,10 @@
                                  <li><span><i class="ri-add-line"></i></span></li>
                               </ul>
                            </div>
-                        </div>
+
                      </router-link>
                   </li>
+
                </Slick>
             </div>
          </b-col>
@@ -46,23 +48,12 @@
 </template>
 <script>
    import ApiMovies from "@/mixins/movies";
+
 export default {
   name: 'Upcomming',
-  components: {
-  },
-  mounted () {
-
-  },
-  data () {
+  data: function() {
     return {
-      favoriteData: [
-        { image: require('../../../../assets/images/frontend/favorite/01.jpg'), title: 'The Last Breath', age: '5+', time: '2h 30m' },
-        { image: require('../../../../assets/images/frontend/favorite/02.jpg'), title: 'Last Night', age: '22+', time: '2h 30m' },
-        { image: require('../../../../assets/images/frontend/favorite/03.jpg'), title: '1980', age: '25+', time: '2h 30m' },
-        { image: require('../../../../assets/images/frontend/favorite/04.jpg'), title: '1980', age: '25+', time: '2h 30m' },
-        { image: require('../../../../assets/images/frontend/favorite/05.jpg'), title: '1980', age: '25+', time: '2h 30m' }
-      ],
-       moviesList:[],
+      favoriteData: [],
       favOption: {
         dots: false,
         arrows: false,
@@ -97,22 +88,28 @@ export default {
           }
         ]
       }
-    }
+    };
   },
-   created() {
-     console.log(this.moviesList)
-      this.getMovies()
-              .then((data) => {
+    created: function () {
+     console.log(this.favoriteData)
 
-                 this.moviesList =  JSON.stringify(data.data)
-                 console.log("movie",this.moviesList)
+      this.getMovies()
+              .then(  data => {
+
+                 this.favoriteData = data.data.results.slice(0, 4)
+                 console.log("movie", this.favoriteData)
               })
               .catch(err => console.log(err));
    },
-   methods: {
-
+   components: {
    },
-   mixins:[ApiMovies]
+   methods: {
+      getImageFromApi (name) {
+         return 'https://image.tmdb.org/t/p/w300' + name
+      }
+   },
+   mixins: [ApiMovies]
+
 
 }
 </script>

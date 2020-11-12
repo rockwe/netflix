@@ -1,15 +1,15 @@
 <template>
       <section class="iq-main-slider p-0">
       <Slick id="tvshows-slider" :option="sliderOption">
-         <div v-for="(item,index) in sliderData" :key="index">
-            <router-link :to="{ name: 'landing-page.category-detail' }">
+         <div v-for="item in sliderData" :key="item.id">
+            <router-link :to="{ name: 'landing-page.category-detail',params:{id:item.id} }">
                <div class="shows-img">
-                  <img :src="item.image" class="w-100" alt="">
+                  <img :src="getImageFromApi(item.poster_path)" class="w-90" alt="">
                   <div class="shows-content">
                      <h4 class="text-white mb-1">{{item.title}}</h4>
                      <div class="movie-time d-flex align-items-center">
-                        <div class="badge badge-secondary p-1 mr-2">{{item.age}}</div>
-                        <span class="text-white">{{item.series}}</span>
+                        <div class="badge badge-secondary p-1 mr-2">{{item.vote_average}}</div>
+                        <span class="text-white">{{item.release_date}}</span>
                      </div>
                   </div>
                </div>
@@ -19,7 +19,7 @@
       <div class="dropdown genres-box">
         <b-dropdown id="dropdownMenuButton40" menu-class="three-column">
           <template v-slot:button-content>
-            <b-link href="#" style="color:#fff"> Genres</b-link>
+            <b-link href="#" style="color:#fff"> Genre</b-link>
           </template>
           <b-dropdown-item href="#">Share</b-dropdown-item>
           <b-dropdown-item href="#">Delete</b-dropdown-item>
@@ -38,7 +38,7 @@
    </section>
 </template>
 <script>
-
+    import ApiMovies from "@/mixins/movies";
 export default {
   name: 'Slider',
   components: {
@@ -47,11 +47,7 @@ export default {
   },
   data () {
     return {
-      sliderData: [
-        { image: require('../../../assets/images/frontend/shows-banner/show-1.jpg'), title: 'The Hero Camp', age: '18+', series: '3 Seasons' },
-        { image: require('../../../assets/images/frontend/shows-banner/show-2.jpg'), title: 'The Hero Camp', age: '18+', series: '3 Seasons' },
-        { image: require('../../../assets/images/frontend/shows-banner/show-3.jpg'), title: 'The Hero Camp', age: '18+', series: '3 Seasons' }
-      ],
+      sliderData: [],
       sliderOption: {
         centerMode: true,
         centerPadding: '200px',
@@ -83,6 +79,24 @@ export default {
       }
 
     }
-  }
+  },
+    created: function () {
+        console.log(this.favoriteData)
+        this.getUpcoming()
+            .then(  data => {
+
+                this.sliderData = data.data.results.slice(0, 4)
+
+            })
+            .catch(err => console.log(err));
+    },
+    components: {
+    },
+    methods: {
+        getImageFromApi (name) {
+            return 'https://image.tmdb.org/t/p/w300' + name
+        }
+    },
+    mixins: [ApiMovies]
 }
 </script>

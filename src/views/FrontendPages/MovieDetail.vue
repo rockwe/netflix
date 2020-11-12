@@ -1,7 +1,6 @@
 <template>
 <div>
   <Details/>
-  <Upcomming/>
   <MoreLike/>
 </div>
 </template>

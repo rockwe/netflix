@@ -1,0 +1,8 @@
+[
+  { "id": 1, "image": "../../../assets/images/frontend/tvthrillers/01.jpg", "title": "Mission Moon", "age": "12+", "series": "1 Seasons", "description": "day of da"},
+  { "id": 2, "image": "../../../assets/images/frontend/tvthrillers/05.jpg", "title": "Day of Darknes ", "age": "14+", "series": "7 Seasons", "description": "day of da"},
+  { "id": 3, "image": "../../../assets/images/frontend/tvthrillers/03.jpg", "title": "Knight Mare", "age": "11+", "series": "6 Seasons", "description": "day of da"},
+  { "id": 4, "image": "../../../assets/images/frontend/tvthrillers/09.jpg", "title": "NIGHT MARE", "age": "19+", "series": "5 Seasons", "description": "day of da"},
+  { "id": 5, "image": "../../../assets/images/frontend/tvthrillers/05.jpg", "title": "Friends", "age": "10+", "series": "5 Seasons", "description": "day of da"},
+  { "id": 6, "image": "../../../assets/images/frontend/tvthrillers/08.jpg", "title": "Dino Land", "age": "09+", "series": "3 Seasons", "description": "day of da"}
+]

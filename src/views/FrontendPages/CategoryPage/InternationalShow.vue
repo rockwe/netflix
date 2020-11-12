@@ -8,17 +8,17 @@
                 </div>
                 <div class="favorites-contens">
                     <Slick class="favorites-slider list-inline  row p-0 mb-0" :option="sliderOption">
-                        <li class="slide-item" v-for="(item,index) in sliderData" :key="index">
-                            <router-link :to="{ name: 'landing-page.show-single' }">
+                        <li class="slide-item" v-for="item in sliderData" :key="item.id">
+                            <router-link :to="{ name: 'landing-page.show-single',params:{id:item.id} }">
                                 <div class="block-images position-relative">
                                     <div class="img-box">
-                                    <img :src="item.image" class="img-fluid" alt="">
+                                    <img :src="getImageFromApi(item.poster_path)" class="img-fluid" alt="">
                                     </div>
                                     <div class="block-description">
                                     <h6>{{item.title}}</h6>
                                     <div class="movie-time d-flex align-items-center my-2">
-                                        <div class="badge badge-secondary p-1 mr-2">{{item.age}}</div>
-                                        <span class="text-white">{{item.series}}</span>
+                                        <div class="badge badge-secondary p-1 mr-2">{{item.vote_average}}</div>
+                                        <span class="text-white">{{item.release_date}}</span>
                                     </div>
                                     <div class="hover-buttons">
                                         <span class="btn btn-hover"><i class="fa fa-play mr-1" aria-hidden="true"></i>
@@ -43,6 +43,7 @@
 </section>
 </template>
 <script>
+    import ApiMovies from "@/mixins/movies";
 export default {
   name: 'PopularShow',
   components: {
@@ -51,14 +52,7 @@ export default {
   },
   data () {
     return {
-      sliderData: [
-        { image: require('../../../assets/images/frontend/tvthrillers/06.jpg'), title: 'Day of Darkness', age: '15+', series: '2 Seasons' },
-        { image: require('../../../assets/images/frontend/tvthrillers/07.jpg'), title: 'Day of Darkness', age: '15+', series: '2 Seasons' },
-        { image: require('../../../assets/images/frontend/tvthrillers/08.jpg'), title: 'Day of Darkness', age: '15+', series: '2 Seasons' },
-        { image: require('../../../assets/images/frontend/tvthrillers/09.jpg'), title: 'Day of Darkness', age: '15+', series: '2 Seasons' },
-        { image: require('../../../assets/images/frontend/tvthrillers/05.jpg'), title: 'Day of Darkness', age: '15+', series: '2 Seasons' },
-        { image: require('../../../assets/images/frontend/tvthrillers/01.jpg'), title: 'Day of Darkness', age: '15+', series: '2 Seasons' }
-      ],
+      sliderData: [],
       sliderOption: {
         dots: false,
         arrows: false,
@@ -94,6 +88,25 @@ export default {
         ]
       }
     }
-  }
+  },
+
+    created: function () {
+        console.log(this.favoriteData)
+        this.getUpcoming()
+            .then(  data => {
+
+                this.sliderData = data.data.results.slice(5, 10)
+
+            })
+            .catch(err => console.log(err));
+    },
+    components: {
+    },
+    methods: {
+        getImageFromApi (name) {
+            return 'https://image.tmdb.org/t/p/w300' + name
+        }
+    },
+    mixins: [ApiMovies]
 }
 </script>

@@ -44,21 +44,14 @@
 </template>
 <script>
 export default {
-  name: 'PopularShow',
+  name: 'InternationalShow',
   components: {
   },
   mounted () {
   },
   data () {
     return {
-      sliderData: [
-        { image: require('../../../assets/images/frontend/tvthrillers/06.jpg'), title: 'Day of Darkness', age: '15+', series: '2 Seasons' },
-        { image: require('../../../assets/images/frontend/tvthrillers/07.jpg'), title: 'Day of Darkness', age: '15+', series: '2 Seasons' },
-        { image: require('../../../assets/images/frontend/tvthrillers/08.jpg'), title: 'Day of Darkness', age: '15+', series: '2 Seasons' },
-        { image: require('../../../assets/images/frontend/tvthrillers/09.jpg'), title: 'Day of Darkness', age: '15+', series: '2 Seasons' },
-        { image: require('../../../assets/images/frontend/tvthrillers/05.jpg'), title: 'Day of Darkness', age: '15+', series: '2 Seasons' },
-        { image: require('../../../assets/images/frontend/tvthrillers/01.jpg'), title: 'Day of Darkness', age: '15+', series: '2 Seasons' }
-      ],
+      sliderData: [],
       sliderOption: {
         dots: false,
         arrows: false,
